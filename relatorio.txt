@@ -1,0 +1,29 @@
+Aluno:
+Luca Rodrigues Panza - 202465173AC
+
+--- Como a IA me auxiliou no desenvolvimento ---
+
+Usei a IA como apoio para desenhar e implementar o mini projeto de RBAC. 
+A atividade pedia um controle de acesso baseado em papéis
+com pelo menos três cargos. Eu defini o cenário de gestão de tarefas, os
+papéis Diretor, Coordenador e Funcionário, a autenticação com JWT e a
+decisão de manter os dados em memória, sem banco. A IA perguntou sobre 
+essas escolhas antes de escrever código e, a partir delas, montou o plano 
+da aplicação.
+
+Meu papel foi escolher o escopo, revisar o resultado na interface e apontar
+o que não ficou bom. A IA acelerou a escrita do código, mas a validação 
+visual e a decisão do que era aceitável ficaram comigo.
+
+--- Visão Crítica ---
+
+O projeto cumpre um RBAC simples. Há uma matriz no backend em que
+cada papel herda as permissões do de baixo, e cada rota exige
+autenticação e permissão. A senha fica com bcrypt, e o cargo
+consultado é o atual do usuário, não o gravado no JWT.
+
+O ponto fraco é que a regra de o funcionário só concluir a própria
+tarefa não está nessa matriz: é uma checagem de dono dentro da rota,
+fácil de esquecer numa rota nova. Para a atividade isso basta, porque
+a decisão continua no servidor. Num sistema real faltariam
+persistência, auditoria e um jeito de invalidar o token no logout.
